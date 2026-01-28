@@ -1,15 +1,15 @@
 import copy
 
-ListofXcor = []
-ListofAttributes = []
-Ucordinate = {"XCor":0 , "YCor":0}
-Size = {"XCor":0 , "YCor":0}
+ListofXcor = []                                         #list of lists of objects showing the visuals of the ma
+ListofAttributes = []                                   #list of lists of secondary variables for specific locations on the map
+Ucordinate = {"XCor":0 , "YCor":0}                      #user coordinates used to id the user location without altering the map
+Size = {"XCor":0 , "YCor":0}                            #Size of the map, for simpler access to some parameters
 
 
 
-def resetmap(ListofXcor, ListofAttributes,Ucordinate,XCor,YCor,Size):
-    ListofXcor.clear()
-    Size.update({"XCor":XCor, "YCor":YCor})
+def resetmap(ListofXcor, ListofAttributes,Ucordinate,XCor,YCor,Size):                                                   #resets the map to specific parameters, all with 'Empty' tiles both for the map as well as the attribute map
+    ListofXcor.clear()                                                                                                  #also used to generate a new empty map
+    Size.update({"XCor":XCor, "YCor":YCor})                                                                             #requires XCor and YCor to be int - make sure to test input for correct input
     i = 0
     while i < XCor:
         ListofXcor.append(["_"])
@@ -20,32 +20,34 @@ def resetmap(ListofXcor, ListofAttributes,Ucordinate,XCor,YCor,Size):
             ListofAttributes[i].append("0")
             j += 1
         i +=1
-    Ucordinate.update({"XCor":round((XCor)/2, 0), "YCor":round((YCor)/2, 0)})
+    Ucordinate.update({"XCor":round((XCor)/2, 0), "YCor":round((YCor)/2, 0)})                                           #by choice the default places the user in the center
 
 
 
-def printmap(ListofXcor, Ucordinate, Size):
+def printmap(ListofXcor, Ucordinate, Size):                                                                             #outputs a print of the map with the user placed in it, without altering the main map
     Mapwithuser = copy.deepcopy(ListofXcor)                                                                             #using a temp map since exp. map size is relative small
     i = 0
     x = int(Ucordinate["XCor"])
     y = int(Ucordinate["YCor"])
     Mapwithuser[x][y] = "X"
     while i < Size["XCor"]:
-        b = str(Mapwithuser[i]).replace("[","").replace("]","").replace(" ","").replace(",","").replace("'","")
+        b = str(Mapwithuser[i]).replace("[","").replace("]","").replace(" ","").replace(",","").replace("'","")     #cleans the map to an easier to read space
         print(f"{b}")
         i += 1
     Mapwithuser.clear()
 
 
 
-def changeuserCor(Size,Ucordinate,NewXCor,NewYCor):
-    if int(NewXCor) < Size["XCor"]-1 and int(NewYCor) < Size["YCor"]:
+def changeuserCor(Size,Ucordinate,NewXCor,NewYCor):                                                                     #used to place the user on a new tile with cor NewXCor and NewYCor
+    if int(NewXCor) < Size["XCor"]-1 and int(NewYCor) < Size["YCor"]:                                                   #requres input to be int test before
         Ucordinate.update({"XCor":NewXCor, "YCor":NewYCor})
         print(f"User has been moved to X:{NewXCor}, Y:{NewYCor}")
     else:
         print(f"Cant move User to X:{NewXCor}, Y:{NewYCor} because its outside the map")
 
 
+
+#Movementoptions of user
 
 def moveup(Size,Ucordinate,ListofAttributes):
     if Ucordinate["XCor"] == 0:
@@ -185,7 +187,7 @@ def UpdateAttributelist(Size,ListofXcor,ListofAttributes):
 
 
 
-resetmap(ListofXcor, ListofAttributes, Ucordinate,9,9, Size)
+resetmap(ListofXcor, ListofAttributes, Ucordinate,9,19, Size)
 printmap(ListofXcor, Ucordinate, Size)
 Alterlocation(Size,ListofXcor,ListofAttributes,4,5,"A")
 Alterlocation(Size,ListofXcor,ListofAttributes,4,2,"T")
@@ -205,13 +207,13 @@ print(f" You see {Lookat(Size,ListofXcor,ListofAttributes,4,5)} at X:4 Y:5")
 # changeuserCor(Size,Ucordinate,4,9)
 # printmap(ListofXcor,Ucordinate, Size)
 # print(Ucordinate)
-# k = 0
-# while k < Size["XCor"]-1:
-#     print(f"{ListofXcor[k]}\n")
-#     k += 1
-# l = 0
-# while l < Size["XCor"]:
-#     print(f"{ListofAttributes[l]}\n")
-#     l += 1
+k = 0
+while k < Size["XCor"]-1:
+    print(f"{ListofXcor[k]}\n")
+    k += 1
+l = 0
+while l < Size["XCor"]:
+    print(f"{ListofAttributes[l]}\n")
+    l += 1
 # print(Ucordinate)
 movementinterface(Size,Ucordinate,ListofXcor,ListofAttributes)
