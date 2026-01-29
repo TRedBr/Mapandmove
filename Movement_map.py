@@ -196,6 +196,7 @@ Alterlocation(Size, ListofXcor, ListofAttributes, 1, 1, "~")
 Alterlocation(Size, ListofXcor, ListofAttributes, 1, 2, "~")
 Alterlocation(Size, ListofXcor, ListofAttributes, 3, 6, "B")
 print(f" You see {Lookat(Size, ListofXcor, ListofAttributes, 4, 5)} at X:4 Y:5")
+print(Size)
 # UpdateAttributelist(Size,ListofXcor,ListofAttributes)
 # print(Ucordinate)
 # changeuserCor(Size,Ucordinate,3,7)
@@ -204,13 +205,13 @@ print(f" You see {Lookat(Size, ListofXcor, ListofAttributes, 4, 5)} at X:4 Y:5")
 # changeuserCor(Size,Ucordinate,4,9)
 # printmap(ListofXcor,Ucordinate, Size)
 # print(Ucordinate)
-k = 0
-while k < Size["XCor"] - 1:
-    print(f"{ListofXcor[k]}\n")
-    k += 1
-l = 0
-while l < Size["XCor"]:
-    print(f"{ListofAttributes[l]}\n")
-    l += 1
+# k = 0
+# while k < Size["XCor"] - 1:
+#     print(f"{ListofXcor[k]}\n")
+#     k += 1
+# l = 0
+# while l < Size["XCor"]:
+#     print(f"{ListofAttributes[l]}\n")
+#     l += 1
 # print(Ucordinate)
 movementinterface(Size, Ucordinate, ListofXcor, ListofAttributes)
