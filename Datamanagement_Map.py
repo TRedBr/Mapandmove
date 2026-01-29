@@ -32,7 +32,7 @@ def checkmapfile(mapname):  # gives out true or false if .txt file with inserted
         return False
 
 
-def overwritemapfile(maplist, mapattributelist, mapname):
+def overwritemapfile(maplist, mapattributelist, ucordinates, mapname):
     with open(f"mapdata/{mapname}.txt", 'wt') as mapfile:
         i = 0
         while i < len(maplist):
